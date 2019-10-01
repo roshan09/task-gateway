@@ -12,9 +12,7 @@ import org.springframework.kafka.core.ProducerFactory
 @Configuration
 class KafkaProducerConfig(
         @Value("\${kafka.base-url}")
-        val server: String,
-        @Value("\${kafka.producer.topic}")
-        val topic: String) {
+        val server: String) {
 
     fun createConfig(): Map<String, Any> {
         return mapOf(
@@ -31,11 +29,6 @@ class KafkaProducerConfig(
     @Bean
     fun createKafkaTemplate(): KafkaTemplate<String, String> {
         return KafkaTemplate(createProducerFactory())
-    }
-
-    @Bean
-    fun createProducer(kafkaTemplate: KafkaTemplate<String, String>): KafkaProducer {
-        return KafkaProducer(topic, kafkaTemplate)
     }
 
 }
