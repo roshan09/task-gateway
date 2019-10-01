@@ -1,0 +1,22 @@
+{
+  "sourceEventType": "applicationEvent",
+  "task": [
+    "first-task",
+    "second-task"
+  ],
+  "schema": {
+    "a" : "b"
+  },
+  "targetEventMapping": [
+    {
+      "type" : "jsonResource",
+      "key" : "applicationId",
+      "mappedKeyPath" : "applicationId"
+    },
+    {
+      "type" : "dummyResource",
+      "key" : "customerId",
+      "mappedKeyPath" : "userId"
+    }
+  ]
+}
