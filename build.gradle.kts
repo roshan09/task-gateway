@@ -21,6 +21,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.springframework.kafka:spring-kafka")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("com.jayway.jsonpath:json-path:2.4.0")
 
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

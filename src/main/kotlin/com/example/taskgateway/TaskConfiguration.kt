@@ -15,7 +15,7 @@ class TaskConfiguration(
     val contracts = resourceLoader.getResource("classpath:contract/task-contract.json")
 
     @Bean
-    fun createTaskContract(): TaskContract {
+    fun createTaskContract(): List<TaskContract> {
         val contractJson = contracts.file.readText()
         return jacksonObjectMapper().readValue(contractJson)
     }

@@ -1,5 +1,7 @@
 package com.example.taskgateway.kafka.producer
 
+import com.example.taskgateway.Task
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.kafka.core.KafkaTemplate
@@ -12,7 +14,8 @@ class KafkaTaskProducer(
         @Autowired
         private val kafkaTemplate: KafkaTemplate<String, String>
 ) {
-    fun produce(event: String) {
-        kafkaTemplate.send(topic, event)
+    fun produce(task: Task) {
+        val taskString = jacksonObjectMapper().writeValueAsString(task)
+        kafkaTemplate.send(topic, taskString)
     }
 }

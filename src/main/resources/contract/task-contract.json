@@ -1,22 +1,29 @@
-{
-  "sourceEventType": "applicationEvent",
-  "task": [
-    "first-task",
-    "second-task"
-  ],
-  "schema": {
-    "a" : "b"
-  },
-  "targetEventMapping": [
-    {
-      "type" : "jsonResource",
-      "key" : "applicationId",
-      "mappedKeyPath" : "applicationId"
+[
+  {
+    "sourceEventType": "applicationEvent",
+    "task": [
+      "first-task",
+      "second-task"
+    ],
+    "schema": {
+      "a": "b"
     },
-    {
-      "type" : "dummyResource",
-      "key" : "customerId",
-      "mappedKeyPath" : "userId"
-    }
-  ]
-}
+    "targetEventMapping": [
+      {
+        "type": "jsonResource",
+        "key": "applicationId",
+        "mappedKeyPath": "$.applicationId"
+      },
+      {
+        "type": "jsonResource",
+        "key": "customerId",
+        "mappedKeyPath": "$.userId"
+      },
+      {
+        "type": "dummyResource",
+        "key": "name",
+        "mappedKeyPath": "$.name"
+      }
+    ]
+  }
+]
