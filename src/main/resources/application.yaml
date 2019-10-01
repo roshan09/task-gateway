@@ -1,4 +1,7 @@
 kafka:
+  base-url : localhost:9092
   consumer:
-    topic: create-task
+    topic: dummyTopic
     group-id: create-task-group
+  producer:
+    topic: task
