@@ -16,7 +16,7 @@ class TaskConfiguration(
 
     @Bean
     fun createTaskContract(): List<TaskContract> {
-        val contractJson = contracts.file.readText()
+        val contractJson = contracts.inputStream.bufferedReader().readText()
         return jacksonObjectMapper().readValue(contractJson)
     }
 }
