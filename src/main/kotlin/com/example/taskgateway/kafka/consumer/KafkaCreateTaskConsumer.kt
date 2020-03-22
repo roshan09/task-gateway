@@ -8,12 +8,7 @@ import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.stereotype.Component
 
 @Component
-class KafkaCreateTaskConsumer(
-        @Autowired
-        val taskProducer: KafkaTaskProducer,
-        @Autowired
-        val taskService: TaskService
-) {
+class KafkaCreateTaskConsumer(@Autowired val taskService: TaskService) {
 
     @KafkaListener(topics = ["\${kafka.consumer.topic}"], groupId = "\${kafka.consumer.group-id}")
     fun consume(event: String) {
