@@ -15,14 +15,12 @@ data class TaskContract(
         val targetEventMapping: List<PathResourceConfig>
 ) {
 
-    private fun validate(data: String): Boolean {
+    fun validate(data: String): Boolean {
         val dataMap = jacksonObjectMapper().readValue(data, Map::class.java) as Map<String, Any>
         return dataMap["eventType"] as String == sourceEventType
     }
 
     fun generateTasks(data: String): List<Task> {
-
-        if (!validate(data)) return emptyList()
 
         val payload = mutableMapOf<String, Any>()
 

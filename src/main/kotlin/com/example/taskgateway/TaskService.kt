@@ -16,6 +16,7 @@ class TaskService {
 
     fun process(event: String) {
         taskContracts
+                .filter { it.validate(event) }
                 .map { it.generateTasks(event) }.flatten()
                 .map { it -> taskProducer.produce(it) }
     }
