@@ -6,6 +6,7 @@ cd /Users/admin/Downloads/kafka_2.12-2.3.0
 
 echo welcome1
 
+cd ~/Downloads/kafka_2.12-2.3.0/
 # start zookeeper
 bin/zookeeper-server-start.sh config/zookeeper.properties & bin/kafka-server-start.sh config/server.properties
 
