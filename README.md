@@ -1,4 +1,4 @@
-#  Introduction to task-gateway?
+#  Introduction to task-gateway
 Task-gateway will trigger multiple sub tasks or dependent tasks once the parent 
 task is completed based on given configuration.
 
