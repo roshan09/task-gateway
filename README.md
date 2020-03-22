@@ -3,8 +3,8 @@ Task-gateway will trigger multiple sub tasks or dependent tasks once the parent
 task is completed based on given configuration.
 
 Configurations can be of following type :
-    1) Map source field to destination field.
-    2) Get other details based on sourceField by fetching the data from API.
+1) Map source field to destination field.
+2) Get other details based on sourceField by fetching the data from API.
         
 #  Example :     
 ```json
