@@ -1,11 +1,12 @@
-##Introduction to task-gateway?
-    Basically an entry point which transform event of one world to another. 
-    This gateway will accespt an event and produce multiple task events based 
-    on given configuration.
-    Configurations can be of following type :
-        1) Map source field to destinition field.
-        2) Get other details based on sourceField by fetching the data from API.
-##Example :     
+#  Introduction to task-gateway?
+Task-gateway will trigger multiple sub tasks or dependent tasks once the parent 
+task is completed based on given configuration.
+
+Configurations can be of following type :
+    1) Map source field to destination field.
+    2) Get other details based on sourceField by fetching the data from API.
+        
+#  Example :     
 ```json
     input-event.json:
     {
@@ -22,7 +23,6 @@
       }
     }    
 ```
-
 ####Create following subTasks once the order is placed
 
 ```json
@@ -44,8 +44,10 @@
       "mobileNumber" : "9988776655"
     }
 ``` 
-    Publish DISPATCH_ORDER event and fetch the necessary address deatils
-    based on orderId from another service
+
+Publish DISPATCH_ORDER event and fetch the necessary address deatils
+based on orderId from another service
+
 ```json
     dispatch-order.json:
     {
@@ -56,7 +58,7 @@
       "addressDeatils" : {
         "landmark"  : "rto office",
         "city"  : "pune"
-        "addressLine1"  : "A212 Hermes"
+        "addressLine1" : "A212 Hermes"
       }
     }
 ```
