@@ -11,13 +11,13 @@ Configurations can be of following type :
     input-event.json:
     {
       "eventType": "ORDER_PLACED",
-      "customerDeatils" : {
+      "customerDetails" : {
         "customerId": "cust123",
         "customerName" : "John",
         "email" : "John@gmail.com",
         "mobileNumber" : "9988776655"      
       },
-      "orderDeatils" : {
+      "orderDetails" : {
         "orderId" : "111",
         "orderedItem"  : "Sony Headphones"      
       }
@@ -41,11 +41,11 @@ Configurations can be of following type :
       "eventType": "ORDER_PLACED_EMAIL_NOTIFICATION",
       "customerName" : "John",
       "orderedItem"  : "Sony Headphones",
-      "mobileNumber" : "9988776655"
+      "email" : "John@gmail.com"
     }
 ``` 
 
-Publish DISPATCH_ORDER event and fetch the necessary address deatils
+Publish DISPATCH_ORDER event and fetch the necessary address details
 based on orderId from another service
 
 ```json
@@ -55,7 +55,7 @@ based on orderId from another service
       "customerId": "cust123",
       "orderId" : "111",
       "orderedItem"  : "Sony Headphones",
-      "addressDeatils" : {
+      "addressDetails" : {
         "landmark"  : "rto office",
         "city"  : "pune",
         "addressLine1" : "A212 Hermes"
