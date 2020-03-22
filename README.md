@@ -23,7 +23,7 @@ Configurations can be of following type :
       }
     }    
 ```
-####Create following subTasks once the order is placed
+#### Create following subTasks once the order is placed
 
 ```json
     sms-notification.json:
@@ -57,7 +57,7 @@ based on orderId from another service
       "orderedItem"  : "Sony Headphones",
       "addressDeatils" : {
         "landmark"  : "rto office",
-        "city"  : "pune"
+        "city"  : "pune",
         "addressLine1" : "A212 Hermes"
       }
     }
