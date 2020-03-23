@@ -5,11 +5,13 @@ buildscript {
     }
     repositories {
         mavenCentral()
+        maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
         classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+        classpath("gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.21.0")
     }
 }
 
@@ -17,6 +19,7 @@ apply plugin: 'kotlin'
 apply plugin: 'kotlin-spring'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.palantir.docker'
 
 group = 'com.example.consumer'
 version = '0.0.1-SNAPSHOT'
@@ -56,4 +59,10 @@ dependencies {
 
     testImplementation("org.springframework.kafka:spring-kafka-test:2.2.4.RELEASE")
 
+}
+
+docker {
+    name "${bootJar.baseName}"
+    copySpec.from(tasks.bootJar.outputs).into("jars")
+    buildArgs(['JAR_FILE': "jars/${bootJar.archiveName}"])
 }
