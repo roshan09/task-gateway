@@ -1,7 +1,10 @@
 kafka:
-  base-url : localhost:9092
+  base-url : http://localhost:9092
   consumer:
     topic: create-task
     group-id: create-task-group
   producer:
     topic: task
+
+server:
+  port: 8001

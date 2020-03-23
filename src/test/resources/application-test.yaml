@@ -1,0 +1,7 @@
+kafka:
+  base-url: ${spring.embedded.kafka.brokers}
+  consumer:
+    topic: dummy-create-task
+    group-id: dummy-create-task-group
+  producer:
+    topic: dummy-task
