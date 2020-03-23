@@ -6,13 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
 @Component
-class TaskService {
+class TaskService(
+        @Autowired
+        private val taskContracts: List<TaskContract>,
+        @Autowired
+        private val taskProducer: KafkaTaskProducer) {
 
-    @Autowired
-    lateinit var taskContracts: List<TaskContract>
-
-    @Autowired
-    lateinit var taskProducer: KafkaTaskProducer
 
     fun process(event: String) {
         taskContracts
