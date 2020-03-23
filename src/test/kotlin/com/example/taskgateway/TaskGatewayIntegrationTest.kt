@@ -36,10 +36,17 @@ class TaskGatewayIntegrationTest {
 
         val eventString = """
         {
-            "eventType" : "applicationEvent",
-            "applicationId" : "app1",
-            "userId" : "user1",
-            "name" : "name1"
+          "eventType": "ORDER_PLACED",
+          "customerDetails" : {
+            "customerId": "cust123",
+            "name" : "John",
+            "email" : "John@gmail.com",
+            "mobileNumber" : "9988776655"
+          },
+          "orderDetails" : {
+            "orderId" : "111",
+            "orderedItem"  : "Sony Headphones"
+          }
         }
         """.trimIndent()
 
@@ -54,8 +61,8 @@ class TaskGatewayIntegrationTest {
         val firstTask = events.first()
         val secondTask  = events.last()
 
-        val expectedFirstTask = """{"taskType":"first-task","payload":{"applicationId":"app1","customerId":"user1","name":1}}"""
-        val expectedSecondTask = """{"taskType":"second-task","payload":{"applicationId":"app1","customerId":"user1","name":1}}"""
+        val expectedFirstTask = """{"taskType":"ORDER_PLACED_SMS_NOTIFICATION","payload":{"customerName":"John","orderedItem":"Sony Headphones","mobileNumber":"9988776655"}}"""
+        val expectedSecondTask = """{"taskType":"ORDER_PLACED_EMAIL_NOTIFICATION","payload":{"customerName":"John","orderedItem":"Sony Headphones","email":"John@gmail.com"}}"""
 
         Assertions.assertEquals(firstTask, expectedFirstTask)
         Assertions.assertEquals(secondTask, expectedSecondTask)

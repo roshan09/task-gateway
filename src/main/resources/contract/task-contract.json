@@ -1,28 +1,63 @@
 [
   {
-    "sourceEventType": "applicationEvent",
+    "sourceEventType": "ORDER_PLACED",
     "task": [
-      "first-task",
-      "second-task"
+      "ORDER_PLACED_SMS_NOTIFICATION"
     ],
-    "schema": {
-      "a": "b"
-    },
+    "schema": {},
     "targetEventMapping": [
       {
         "type": "jsonResource",
-        "key": "applicationId",
-        "mappedKeyPath": "$.applicationId"
+        "key": "customerName",
+        "mappedKeyPath": "$.customerDetails.name"
       },
       {
         "type": "jsonResource",
-        "key": "customerId",
-        "mappedKeyPath": "$.userId"
+        "key": "orderedItem",
+        "mappedKeyPath": "$.orderDetails.orderedItem"
       },
       {
-        "type": "dummyResource",
-        "key": "name",
-        "mappedKeyPath": "$.name"
+        "type": "jsonResource",
+        "key": "mobileNumber",
+        "mappedKeyPath": "$.customerDetails.mobileNumber"
+      }
+    ]
+  },
+  {
+    "sourceEventType": "ORDER_PLACED",
+    "task": [
+      "ORDER_PLACED_EMAIL_NOTIFICATION"
+    ],
+    "schema" : {},
+    "targetEventMapping": [
+      {
+        "type": "jsonResource",
+        "key": "customerName",
+        "mappedKeyPath": "$.customerDetails.name"
+      },
+      {
+        "type": "jsonResource",
+        "key": "orderedItem",
+        "mappedKeyPath": "$.orderDetails.orderedItem"
+      },
+      {
+        "type": "jsonResource",
+        "key": "email",
+        "mappedKeyPath": "$.customerDetails.email"
+      }
+    ]
+  },
+  {
+    "sourceEventType": "CART_UPDATED",
+    "task": [
+      "GENERATE_LEAD"
+    ],
+    "schema" : {},
+    "targetEventMapping": [
+      {
+        "type": "jsonResource",
+        "key": "customerId",
+        "mappedKeyPath": "$.customerDetails.customerId"
       }
     ]
   }
