@@ -1,8 +1,6 @@
 
 #!/bin/bash  
 
-cd /Users/admin/Downloads/kafka_2.12-2.3.0
-
 
 echo welcome1
 
