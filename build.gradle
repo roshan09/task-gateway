@@ -53,7 +53,12 @@ dependencies {
 
     implementation("org.springframework.kafka:spring-kafka")
 
+    // Health checks - Actuators
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("io.micrometer:micrometer-registry-prometheus")
 
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.2.0")
     testImplementation("io.mockk:mockk:1.8.9.kotlin13")

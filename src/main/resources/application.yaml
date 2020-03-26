@@ -1,5 +1,5 @@
 kafka:
-  base-url : http://localhost:9092
+  base-url: http://localhost:9092
   consumer:
     topic: create-task
     group-id: create-task-group
@@ -8,3 +8,24 @@ kafka:
 
 server:
   port: 8001
+
+management:
+  server:
+    port: 8002
+  endpoint:
+    prometheus:
+      enabled: true
+    health:
+      enabled: true
+    metrics:
+      enabled: true
+    httptrace:
+      enabled: true
+    env:
+      enabled: true
+
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: prometheus,health,env,metrics,httptrace
