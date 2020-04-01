@@ -6,18 +6,21 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.*
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.jayway.jsonpath.JsonPath
+import org.everit.json.schema.Schema
+import org.everit.json.schema.loader.SchemaLoader
+import org.json.JSONObject
+import java.lang.Exception
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class TaskContract(
-        val sourceEventType: String,
         val task: List<String>,
         val schema: Map<String, Any>,
         val targetEventMapping: List<PathResourceConfig>
 ) {
 
     fun validate(data: String): Boolean {
-        val dataMap = jacksonObjectMapper().readValue(data, Map::class.java) as Map<String, Any>
-        return dataMap["eventType"] as String == sourceEventType
+        val schema = SchemaLoader.load(JSONObject(schema))
+        return schema.isValid(JSONObject(data))
     }
 
     fun generateTasks(data: String): List<Task> {
@@ -41,6 +44,16 @@ data class TaskContract(
         return task.map { Task(taskType = it, payload = payload) }
     }
 }
+
+fun Schema.isValid(message: JSONObject): Boolean {
+    return try {
+        validate(message)
+        true
+    } catch (e: Exception) {
+        false
+    }
+}
+
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,

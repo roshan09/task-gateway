@@ -1,10 +1,36 @@
 [
   {
-    "sourceEventType": "ORDER_PLACED",
     "task": [
       "ORDER_PLACED_SMS_NOTIFICATION"
     ],
-    "schema": {},
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "required": [
+        "eventType",
+        "customerDetails",
+        "orderDetails"
+      ],
+      "properties": {
+        "eventType": {
+          "type": "string",
+          "pattern": "^ORDER_PLACED$"
+        },
+        "customerDetails": {
+          "type": "object",
+          "required": [
+            "name",
+            "mobileNumber"
+          ]
+        },
+        "orderDetails": {
+          "type": "object",
+          "required": [
+            "orderedItem"
+          ]
+        }
+      }
+    },
     "targetEventMapping": [
       {
         "type": "jsonResource",
@@ -24,11 +50,37 @@
     ]
   },
   {
-    "sourceEventType": "ORDER_PLACED",
     "task": [
       "ORDER_PLACED_EMAIL_NOTIFICATION"
     ],
-    "schema" : {},
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "required": [
+        "eventType",
+        "customerDetails",
+        "orderDetails"
+      ],
+      "properties": {
+        "eventType": {
+          "type": "string",
+          "pattern": "^ORDER_PLACED$"
+        },
+        "customerDetails": {
+          "type": "object",
+          "required": [
+            "name",
+            "mobileNumber"
+          ]
+        },
+        "orderDetails": {
+          "type": "object",
+          "required": [
+            "orderedItem"
+          ]
+        }
+      }
+    },
     "targetEventMapping": [
       {
         "type": "jsonResource",
@@ -48,11 +100,22 @@
     ]
   },
   {
-    "sourceEventType": "CART_UPDATED",
     "task": [
       "GENERATE_LEAD"
     ],
-    "schema" : {},
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "required": [
+        "eventType"
+      ],
+      "properties": {
+        "eventType": {
+          "type": "string",
+          "pattern": "^CART_UPDATED$"
+        }
+      }
+    },
     "targetEventMapping": [
       {
         "type": "jsonResource",

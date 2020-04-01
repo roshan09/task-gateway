@@ -8,8 +8,14 @@ class TaskContractTest {
 
     @Test
     fun `should return true if event is valid for given contract`() {
-        val data = """{ "eventType" : "eventType1" }"""
-        val taskContract = TaskContract("eventType1", emptyList(), emptyMap(), emptyList())
+        val jsonSchema = mapOf("\$schema" to "http://json-schema.org/draft-07/schema#",
+                "type" to "object",
+                "required" to listOf(
+                        "eventType",
+                        "eventId"
+                ))
+        val data = """{ "eventType" : "eventType2", "eventId" : "eventType2" }"""
+        val taskContract = TaskContract(emptyList(), jsonSchema, emptyList())
         val result = taskContract.validate(data)
 
         Assertions.assertEquals(true, result)
@@ -17,8 +23,14 @@ class TaskContractTest {
 
     @Test
     fun `should return false if event is not valid for given contract`() {
+        val jsonSchema = mapOf("\$schema" to "http://json-schema.org/draft-07/schema#",
+                "type" to "object",
+                "required" to listOf(
+                        "eventType",
+                        "eventId"
+                ))
         val data = """{ "eventType" : "eventType2" }"""
-        val taskContract = TaskContract("eventType1", emptyList(), emptyMap(), emptyList())
+        val taskContract = TaskContract(emptyList(), jsonSchema, emptyList())
         val result = taskContract.validate(data)
 
         Assertions.assertEquals(false, result)
@@ -41,7 +53,7 @@ class TaskContractTest {
             this
         }
 
-        val taskContract = TaskContract("dummyType", listOf("task1", "task2"),
+        val taskContract = TaskContract(listOf("task1", "task2"),
                 emptyMap(), listOf(firstJsonConfig, secondJsonConfig))
 
         val data = """

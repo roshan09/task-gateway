@@ -67,4 +67,32 @@ class TaskGatewayIntegrationTest {
         Assertions.assertEquals(firstTask, expectedFirstTask)
         Assertions.assertEquals(secondTask, expectedSecondTask)
     }
+
+    @Test
+    fun `should not produce dependent task when filter does not match`() {
+
+        val eventString = """
+        {
+          "eventType": "PAYMENT_SUCCESS",
+          "customerDetails" : {
+            "customerId": "cust123",
+            "name" : "John",
+            "email" : "John@gmail.com",
+            "mobileNumber" : "9988776655"
+          },
+          "orderDetails" : {
+            "orderId" : "111",
+            "orderedItem"  : "Sony Headphones"
+          }
+        }
+        """.trimIndent()
+
+        kafkaProducerTest.produce(incomingTopic, eventString)
+
+        Thread.sleep(1000)
+
+        val events = kafkaConsumerTest.findAllTasks()
+
+        Assertions.assertEquals(0, events.size)
+    }
 }
